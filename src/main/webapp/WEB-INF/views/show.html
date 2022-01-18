@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h2>Fpt Staff</h2>
+    <a href="/create">Create</a>
+    <br>
+    <td><a href="/sort">Sort By Age</a></td>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Salary</th>
+            <th>Branch</th>
+            <th colspan="2">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="staff : ${staffList}">
+            <td th:text="${staff.id}"></td>
+            <td><a th:href="@{/detail(id = ${staff.id})}" th:text="${staff.name}"></a></td>
+            <td th:text="${staff.age}"></td>
+            <td th:text="${staff.salary}"></td>
+            <td th:text="${staff.branch.name}"></td>
+            <td><a th:href="@{/edit(id = ${staff.id})}">Edit</a></td>
+            <td><a th:href="@{/delete(id = ${staff.id})}"  onclick="return confirm('Sure?')">Delete</a></td>
+
+        </tr>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

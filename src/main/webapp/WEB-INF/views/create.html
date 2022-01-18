@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h2>Fpt Staff</h2>
+<form th:object="${staff}" method="post">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Salary</th>
+            <th>Branch</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><input  th:field="${staff.name}"></td>
+            <td><input  th:field="${staff.age}"></td>
+            <td><input  th:field="${staff.salary}"></td>
+
+            <td>
+                <select name="idBranch">
+                    <option th:each="b : ${branchList}" th:text="${b.name}" th:value="${b.id}">
+
+                    </option>
+                </select>
+            </td>
+
+
+        </tr>
+
+        </tr>
+        </tbody>
+    </table>
+    <button type="submit">Create</button>
+
+</form>
+    <a href="/staffs">Back to Home</a>
+</div>
+
+</body>
+</html>
