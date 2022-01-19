@@ -3,6 +3,8 @@ package codegym.service;
 import codegym.model.Staff;
 import codegym.repository.StaffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -14,9 +16,15 @@ public class StaffService implements IStaffService{
     StaffRepository repository;
 
     @Override
+    public Page<Staff> fillAll(Pageable pageable) {
+        return repository.findAll(pageable);
+    }
+
+    @Override
     public List<Staff> fillAll() {
         return (List<Staff>) repository.findAll();
     }
+
 
     @Override
     public void save(Staff staff) {
@@ -34,9 +42,14 @@ public class StaffService implements IStaffService{
     }
 
     @Override
-    public List<Staff> sort(){
-        List<Staff> list = fillAll();
-        list.sort(Comparator.comparing(Staff::getAge));
-        return list;
+    public List<Staff> findAllByNameContains(String name) {
+        return repository.findAllByNameContains(name);
     }
+
+    @Override
+    public Page<Staff> findAllOrOrderByName(Pageable pageable) {
+        return repository.findAllOrOrderByName(pageable);
+    }
+
+
 }

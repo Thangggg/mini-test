@@ -1,13 +1,19 @@
 package codegym.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class Staff {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Pattern(regexp = "^[A-Z][a-z]{4,48}$", message = "6-50 ki tu, bat dau bang chu Hoa")
     private String name;
+    @Min(value = 18, message = "Min 18 Max 30")
+    @Max(value = 30, message = "Min 18 Max 30")
     private int age;
     private long salary;
 

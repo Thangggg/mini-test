@@ -15,6 +15,10 @@
     <a href="/create">Create</a>
     <br>
     <td><a href="/sort">Sort By Age</a></td>
+    <form action="/search" method="post">
+        <input type="text" name="search">
+        <button type="submit">Search</button>
+    </form>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -38,8 +42,12 @@
 
         </tr>
         </tr>
+
         </tbody>
     </table>
+    <button th:if="${staffList.hasPrevious()}"><a th:href="@{/staffs(page=${staffList.number}-1)}"><<</a></button>
+    <b th:text="${staffList.number} + 1"></b>/<b th:text="${staffList.totalPages}"></b>
+    <button th:if="${staffList.hasNext()}"><a th:href="@{/staffs(page=${staffList.number}+1)}">>></a></button>
 </div>
 
 </body>
